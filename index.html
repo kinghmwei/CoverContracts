@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>COVER General Contracting & Maintenance | Abu Dhabi, UAE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+/* ===================== CSS VARIABLES ===================== */
+:root {
+  --bg: #fdfbf7;
+  --fg: #2d2d2d;
+  --muted: #e5e0d8;
+  --accent: #ff4d4d;
+  --border: #2d2d2d;
+  --secondary: #2d5da1;
+  --card-bg: #ffffff;
+  --paper: #fdfbf7;
+  --shadow: #2d2d2d;
+  --hero-overlay: rgba(253,251,247,0.85);
+  --header-bg: rgba(253,251,247,0.95);
+  --toggle-track: #e5e0d8;
+  --toggle-knob: #2d2d2d;
+}
+[data-theme="dark"] {
+  --bg: #131313;
+  --fg: #f0ece4;
+  --muted: #2a2a2a;
+  --accent: #ff4d4d;
+  --border: #f0ece4;
+  --secondary: #5b9bd5;
+  --card-bg: #1e1e1e;
+  --paper: #181818;
+  --shadow: #000;
+  --hero-overlay: rgba(19,19,19,0.85);
+  --header-bg: rgba(19,19,19,0.95);
+  --toggle-track: #2a2a2a;
+  --toggle-knob: #f0ece4;
+}
+
+/* ===================== RESET ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Patrick Hand',cursive;
+  background:var(--bg);
+  color:var(--fg);
+  overflow-x:hidden;
+  background-image:radial-gradient(var(--muted) 1px,transparent 1px);
+  background-size:24px 24px;
+  transition:background 0.4s,color 0.4s;
+}
+
+/* ===================== HEADER ===================== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--header-bg);
+  border-bottom:3px solid var(--border);
+  backdrop-filter:blur(12px);
+  padding:0 2rem;
+  height:70px;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(0);
+  transition:transform 0.4s cubic-bezier(.4,0,.2,1),
+              background 0.4s,box-shadow 0.4s,opacity 0.3s;
+  box-shadow:0 4px 0 var(--border);
+}
+header.hidden{
+  transform:translateY(-110%);
+  opacity:0;
+}
+header.peek{
+  transform:translateY(0);
+  opacity:1;
+  animation:headerSlide 0.4s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes headerSlide{
+  from{transform:translateY(-110%);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.logo{
+  font-family:'Kalam',cursive;
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--fg);
+  letter-spacing:-0.5px;
+  display:flex;align-items:center;gap:8px;
+}
+.logo span{color:var(--accent)}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{
+  font-family:'Patrick Hand',cursive;
+  color:var(--fg);text-decoration:none;
+  font-size:1rem;font-weight:600;
+  position:relative;transition:color 0.2s;
+}
+nav a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.2s;
+}
+nav a:hover::after{transform:scaleX(1)}
+nav a:hover{color:var(--accent)}
+
+.header-right{display:flex;align-items:center;gap:1rem}
+
+/* ===================== DARK/LIGHT TOGGLE (Luminous Card Style) ===================== */
+.theme-card{
+  position:relative;
+  background:radial-gradient(circle at 50% 0%,#3a3a3a 0%,#1a1a1a 64%);
+  box-shadow:inset 0 1rem 0.2rem -1rem #fff0,0 0 0 1px #fff3,0 2px 4px #0004,0 0 0 1px #333;
+  width:5.5rem;height:2.4rem;border-radius:0.8rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.4s;overflow:hidden;
+}
+.theme-card .light-layer{
+  position:absolute;inset:0;pointer-events:none;
+}
+.theme-card .slit{
+  position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+  width:64%;height:0.6rem;background:#121212;
+  transform:rotateX(-76deg);transition:all 0.4s;
+  border-radius:2px;
+}
+.theme-card .lumen{
+  position:absolute;inset:0;opacity:0;transition:opacity 0.4s;
+  pointer-events:none;
+}
+.theme-card .lumen .min{
+  width:70%;height:1rem;background:linear-gradient(#fff0,#fffa);
+  position:absolute;left:0;right:0;bottom:0.6rem;margin:auto;
+  transform:rotateX(-42deg);opacity:0.4;border-radius:50%;
+}
+.theme-card .lumen .mid{
+  width:74%;height:3rem;background:linear-gradient(#fff0,#fffa);
+  position:absolute;left:0;right:0;bottom:1.5rem;margin:auto;
+  transform:rotateX(-42deg);filter:blur(0.4rem);opacity:0.8;
+  border-radius:100% 100% 0 0;
+}
+.theme-card .lumen .hi{
+  width:50%;height:2rem;background:linear-gradient(#fff0,#fffa);
+  position:absolute;left:0;right:0;bottom:2rem;margin:auto;
+  transform:rotateX(22deg);filter:blur(0.4rem);opacity:0.6;
+  border-radius:100% 100% 0 0;
+}
+.theme-card .toggle-handle{
+  position:absolute;top:0;bottom:0;left:0.5rem;margin:auto;
+  width:1.2rem;height:50%;background:#aaa;border-radius:0.2rem;
+  box-shadow:inset 0 1px 4px #fff,inset 0 -1px 1px #000a,0 0 1px 1px #0003,1px 3px 6px #000a;
+  transition:all 0.4s;
+}
+.theme-card .toggle-inner::before{
+  content:'';display:block;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+  width:80%;height:0.3rem;border-radius:0.2rem;background:#000;transition:all 0.4s;
+}
+.theme-card .toggle-label{
+  position:absolute;right:0.5rem;font-size:0.55rem;color:#888;font-family:'Patrick Hand',cursive;
+  transition:all 0.4s;
+}
+.theme-card.active{
+  box-shadow:inset 0 0.5rem 0.1rem -0.5rem #fffa,inset 0 -2rem 1.5rem -1.5rem #000a,
+    0 -0.5rem 0.1rem -0.5rem #fffa,0 0 0 1px #fff2,0 2px 4px #0004;
+}
+.theme-card.active .slit{background:#fff;box-shadow:0 0 4px #fff}
+.theme-card.active .lumen{opacity:0.5}
+.theme-card.active .toggle-handle{transform:translateX(2.5rem);background:#ddd;box-shadow:inset 0 1px 12px #fff,inset 0 -1px 1px #fffa,0 0 2px 1px #4443,1px 3px 6px #0004}
+.theme-icon{font-size:1rem;position:absolute;left:0.4rem;color:#888;transition:all 0.4s}
+.theme-icon.sun{left:auto;right:0.4rem}
+.theme-card.active .theme-icon.moon{opacity:0}
+.theme-card:not(.active) .theme-icon.sun{opacity:0}
+
+/* ===================== HERO ===================== */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;padding-top:70px;
+}
+.skyline-container{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:0;pointer-events:none;z-index:1;
+}
+.building{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;opacity:0;
+}
+.building svg{display:block;width:auto}
+
+/* Building crumble animation */
+@keyframes crumbleUp{
+  0%{clip-path:inset(100% 0 0 0);opacity:0;transform:translateY(40px)}
+  15%{opacity:1}
+  100%{clip-path:inset(0% 0 0 0);opacity:1;transform:translateY(0)}
+}
+.building.animate{
+  animation:crumbleUp 1.8s cubic-bezier(.23,1,.32,1) forwards;
+}
+
+.hero-content{
+  position:relative;z-index:10;
+  text-align:center;padding:2rem;
+  display:flex;flex-direction:column;align-items:center;gap:2rem;
+}
+.hero-tagline{
+  font-family:'Patrick Hand',cursive;
+  font-size:1.1rem;color:var(--secondary);
+  background:var(--card-bg);border:2px solid var(--border);
+  padding:0.4rem 1.2rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:4px 4px 0 var(--border);
+  display:inline-block;
+}
+
+/* ===================== VERTICAL SLIDE-DOWN HEADLINE ===================== */
+.hero-headline{
+  font-family:'Kalam',cursive;
+  font-size:clamp(2.5rem,7vw,5.5rem);
+  font-weight:700;
+  line-height:1.1;
+  color:var(--fg);
+  overflow:hidden;
+  text-align:center;
+}
+.hero-headline .word{display:inline-block;overflow:hidden;margin-right:0.2em}
+.hero-headline .char{
+  display:inline-block;
+  transform:translateY(110%);
+  opacity:0;
+  animation:charSlide 0.6s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes charSlide{
+  to{transform:translateY(0);opacity:1}
+}
+.accent-word{color:var(--accent)}
+.hero-sub{
+  font-family:'Patrick Hand',cursive;
+  font-size:1.2rem;color:var(--fg);opacity:0.8;
+  max-width:500px;text-align:center;
+}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem}
+
+/* ===================== BTN-17 (LightBeamButton style) ===================== */
+.btn-17,.btn-17 *,.btn-17 :after,.btn-17 :before,.btn-17:after,.btn-17:before{border:0 solid;box-sizing:border-box}
+.btn-17{
+  -webkit-tap-highlight-color:transparent;
+  -webkit-appearance:button;
+  background-color:#000;background-image:none;
+  color:#fff;cursor:pointer;
+  font-family:'Patrick Hand',cursive;
+  font-size:100%;font-weight:900;line-height:1.5;
+  margin:0;-webkit-mask-image:-webkit-radial-gradient(#000,#fff);
+  padding:0;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  position:relative;
+}
+.btn-17:disabled{cursor:default}
+.btn-17:-moz-focusring{outline:auto}
+.btn-17 svg{display:block;vertical-align:middle}
+.btn-17 [hidden]{display:none}
+.btn-17{border-radius:99rem;border-width:2px;padding:0.8rem 3rem;z-index:0}
+.btn-17,.btn-17 .text-container{overflow:hidden;position:relative}
+.btn-17 .text-container{display:block;mix-blend-mode:difference}
+.btn-17 .text{display:block;position:relative}
+.btn-17:hover .text{-webkit-animation:move-up-alternate 0.3s forwards;animation:move-up-alternate 0.3s forwards}
+@-webkit-keyframes move-up-alternate{0%{transform:translateY(0)}50%{transform:translateY(80%)}51%{transform:translateY(-80%)}to{transform:translateY(0)}}
+@keyframes move-up-alternate{0%{transform:translateY(0)}50%{transform:translateY(80%)}51%{transform:translateY(-80%)}to{transform:translateY(0)}}
+.btn-17:after,.btn-17:before{--skew:0.2;background:#fff;content:"";display:block;height:102%;left:calc(-50% - 50% * var(--skew));pointer-events:none;position:absolute;top:-104%;transform:skew(calc(150deg * var(--skew))) translateY(var(--progress,0));transition:transform 0.2s ease;width:100%}
+.btn-17:after{--progress:0%;left:calc(50% + 50% * var(--skew));top:102%;z-index:-1}
+.btn-17:hover:before{--progress:100%}
+.btn-17:hover:after{--progress:-102%}
+
+/* Light mode btn variant */
+[data-theme="light"] .btn-17{background-color:var(--fg);border-color:var(--fg)}
+
+/* LightBeam glow overlay */
+.btn-beam{
+  position:relative;isolation:isolate;overflow:hidden;
+}
+@property --gradient-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes border-spin{from{--gradient-angle:0deg}to{--gradient-angle:360deg}}
+.beam-border{
+  position:absolute;inset:0;z-index:-1;border-radius:99rem;
+  background:conic-gradient(from var(--gradient-angle),transparent 0%,#ff4d4d 40%,#2d5da1 50%,transparent 60%,transparent 100%);
+  animation:border-spin 2s linear infinite;
+  padding:2px;
+}
+.beam-inner{
+  position:absolute;inset:2px;z-index:-1;border-radius:99rem;
+  background:#000;
+}
+[data-theme="light"] .beam-inner{background:var(--fg)}
+
+/* ===================== SECTIONS ===================== */
+section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{
+  font-family:'Kalam',cursive;font-size:0.9rem;font-weight:700;
+  color:var(--accent);background:var(--card-bg);
+  border:2px solid var(--border);
+  padding:0.3rem 1rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:3px 3px 0 var(--border);
+  display:inline-block;margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Kalam',cursive;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;
+  color:var(--fg);margin-bottom:1rem;
+  line-height:1.1;
+}
+.section-desc{
+  font-family:'Patrick Hand',cursive;
+  font-size:1.1rem;color:var(--fg);opacity:0.7;
+  max-width:600px;
+}
+.section-header{margin-bottom:3rem}
+
+/* ===================== ABOUT ===================== */
+#about{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:center;padding:6rem 2rem;max-width:1100px;margin:0 auto;
+}
+.about-img-wrap{
+  position:relative;
+}
+.about-img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  border:3px solid var(--border);
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:8px 8px 0 var(--border);
+  transform:rotate(-1.5deg);transition:transform 0.2s;
+}
+.about-img:hover{transform:rotate(0.5deg)}
+.about-tape{
+  position:absolute;top:-15px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  width:100px;height:22px;background:rgba(45,45,45,0.15);
+  border-radius:3px;
+}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.stat-box{
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:1.2rem;
+  border-radius:15px 255px 15px 255px/255px 15px 255px 15px;
+  box-shadow:4px 4px 0 var(--border);
+  text-align:center;
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.stat-box:hover{transform:rotate(1deg) translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}
+.stat-num{
+  font-family:'Kalam',cursive;font-size:2.2rem;font-weight:700;
+  color:var(--accent);display:block;
+}
+.stat-lbl{font-size:0.9rem;color:var(--fg);opacity:0.7}
+
+/* ===================== SERVICES ===================== */
+#services{background:transparent}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.service-card{
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:2rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:4px 4px 0 var(--border);
+  transition:transform 0.15s,box-shadow 0.15s;
+  position:relative;overflow:hidden;
+}
+.service-card:hover{transform:rotate(1deg) translate(-3px,-3px);box-shadow:7px 7px 0 var(--border)}
+.service-card.featured{background:#fff9c4}
+[data-theme="dark"] .service-card.featured{background:#2a2600}
+.service-icon{
+  font-size:2.5rem;margin-bottom:1rem;display:block;
+}
+.service-title{
+  font-family:'Kalam',cursive;font-size:1.3rem;font-weight:700;
+  color:var(--fg);margin-bottom:0.5rem;
+}
+.service-desc{font-size:0.95rem;color:var(--fg);opacity:0.75;line-height:1.6}
+.service-tack{
+  position:absolute;top:-8px;right:20px;
+  width:16px;height:16px;background:var(--accent);border-radius:50%;
+  box-shadow:0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===================== TILTED CARD IMAGES ===================== */
+#projects .section-header{margin-bottom:2rem}
+.projects-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2.5rem;
+}
+.tcard-wrap{
+  perspective:800px;cursor:pointer;
+}
+.tcard{
+  position:relative;transform-style:preserve-3d;
+  transition:transform 0.1s;
+  border:3px solid var(--border);
+  border-radius:15px;
+  box-shadow:6px 6px 0 var(--border);
+  overflow:hidden;
+}
+.tcard img{
+  width:100%;height:240px;object-fit:cover;display:block;
+}
+.tcard-caption{
+  position:absolute;
+  background:var(--card-bg);
+  border:2px solid var(--border);
+  padding:4px 12px;font-size:0.75rem;font-family:'Patrick Hand',cursive;
+  border-radius:4px;box-shadow:2px 2px 0 var(--border);
+  pointer-events:none;opacity:0;transition:opacity 0.2s;
+  white-space:nowrap;z-index:10;top:10px;left:10px;
+}
+.tcard-overlay{
+  position:absolute;bottom:10px;left:10px;right:10px;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);
+  border-radius:8px;padding:0.6rem 1rem;
+  transform:translateZ(20px);
+}
+.tcard-overlay p{color:#fff;font-size:0.9rem;font-weight:600;font-family:'Kalam',cursive}
+.tcard-wrap:hover .tcard-caption{opacity:1}
+
+/* ===================== REVIEWS CAROUSEL ===================== */
+#reviews{overflow:hidden;padding:6rem 0}
+#reviews .section-header{padding:0 2rem}
+.carousel-track-wrap{overflow:hidden;mask:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.carousel-track{
+  display:flex;gap:1.5rem;width:max-content;
+  animation:scrollLeft 40s linear infinite;
+}
+.carousel-track:hover{animation-play-state:paused}
+@keyframes scrollLeft{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.review-card{
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:1.5rem 1.8rem;
+  width:300px;flex-shrink:0;
+  border-radius:15px 255px 15px 225px/225px 15px 255px 15px;
+  box-shadow:4px 4px 0 var(--border);
+  position:relative;
+}
+.review-card::before{
+  content:'"';font-family:'Kalam',cursive;font-size:4rem;
+  color:var(--accent);opacity:0.2;
+  position:absolute;top:-10px;left:10px;line-height:1;
+}
+.review-stars{color:#f5a623;font-size:1rem;margin-bottom:0.5rem}
+.review-text{font-size:0.9rem;line-height:1.6;color:var(--fg);opacity:0.85;margin-bottom:1rem}
+.review-author{font-family:'Kalam',cursive;font-weight:700;color:var(--fg);font-size:0.95rem}
+.review-date{font-size:0.75rem;color:var(--fg);opacity:0.5}
+.review-tack{
+  position:absolute;top:-8px;right:20px;
+  width:14px;height:14px;background:var(--secondary);border-radius:50%;
+}
+
+/* ===================== PARTNERS CAROUSEL ===================== */
+#partners{overflow:hidden;padding:4rem 0}
+#partners .section-header{padding:0 2rem}
+.partners-track-wrap{overflow:hidden;mask:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);margin-top:2rem}
+.partners-track{
+  display:flex;gap:2rem;width:max-content;
+  animation:scrollLeft 25s linear infinite;
+}
+.partners-track:hover{animation-play-state:paused}
+.partner-card{
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:1rem 2rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:4px 4px 0 var(--border);
+  display:flex;align-items:center;gap:0.7rem;
+  flex-shrink:0;
+  transition:transform 0.15s;
+  white-space:nowrap;
+}
+.partner-card:hover{transform:rotate(-1deg)}
+.partner-icon{font-size:1.5rem}
+.partner-name{font-family:'Kalam',cursive;font-weight:700;font-size:1rem;color:var(--fg)}
+
+/* ===================== WHY US ===================== */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.why-card{
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:1.5rem;
+  border-radius:15px 255px 225px 15px/255px 15px 15px 225px;
+  box-shadow:4px 4px 0 var(--border);
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.why-card:hover{transform:rotate(-1deg) translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}
+.why-icon{font-size:2rem;margin-bottom:0.7rem;display:block}
+.why-title{font-family:'Kalam',cursive;font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:0.4rem}
+.why-desc{font-size:0.9rem;color:var(--fg);opacity:0.7;line-height:1.5}
+
+/* ===================== CONTACT ===================== */
+#contact{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:start;padding:6rem 2rem;max-width:1100px;margin:0 auto;
+}
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{
+  display:flex;align-items:flex-start;gap:0.8rem;
+  background:var(--card-bg);border:2px solid var(--border);
+  padding:1rem 1.2rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:3px 3px 0 var(--border);
+}
+.contact-item-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.contact-item-text{font-size:0.9rem;color:var(--fg);line-height:1.5}
+.contact-item-text strong{font-family:'Kalam',cursive;font-size:1rem;display:block;margin-bottom:2px}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-input{
+  font-family:'Patrick Hand',cursive;
+  font-size:1rem;color:var(--fg);
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:0.8rem 1.2rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:3px 3px 0 var(--border);
+  outline:none;width:100%;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.form-input:focus{border-color:var(--secondary);box-shadow:3px 3px 0 var(--secondary),0 0 0 3px rgba(45,93,161,0.15)}
+textarea.form-input{min-height:120px;resize:vertical}
+::placeholder{color:var(--fg);opacity:0.4}
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:var(--card-bg);border-top:3px solid var(--border);
+  padding:3rem 2rem;text-align:center;
+}
+.footer-logo{font-family:'Kalam',cursive;font-size:1.6rem;font-weight:700;color:var(--fg);margin-bottom:0.5rem}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:2rem;justify-content:center;margin:1rem 0;flex-wrap:wrap}
+.footer-links a{color:var(--fg);text-decoration:none;font-size:0.95rem;opacity:0.7;transition:opacity 0.2s,text-decoration 0.2s}
+.footer-links a:hover{opacity:1;text-decoration:line-through;text-decoration-color:var(--accent)}
+.footer-copy{font-size:0.8rem;color:var(--fg);opacity:0.4;margin-top:1rem}
+
+/* ===================== SCROLL ANIMATIONS ===================== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s,transform 0.6s}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===================== DASHED DIVIDER ===================== */
+.dashed-divider{
+  border:none;border-top:3px dashed var(--muted);margin:1rem 0;opacity:0.6;
+}
+
+/* ===================== HERO OVERLAY BG ===================== */
+.hero-bg-overlay{
+  position:absolute;inset:0;
+  background:var(--hero-overlay);
+  z-index:2;
+  pointer-events:none;
+}
+
+/* ===================== SCROLL INDICATOR ===================== */
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  z-index:20;display:flex;flex-direction:column;align-items:center;gap:0.3rem;
+  font-size:0.8rem;color:var(--fg);opacity:0.5;font-family:'Patrick Hand',cursive;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-hint svg{width:24px;height:24px}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:768px){
+  nav{display:none}
+  #about,#contact{grid-template-columns:1fr}
+  .hero-headline{font-size:2.2rem}
+  section{padding:4rem 1.2rem}
+  #about,#contact{padding:4rem 1.2rem}
+}
+
+/* ===================== LIVE CLOCK BADGE ===================== */
+.live-badge{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;
+  background:var(--card-bg);border:3px solid var(--border);
+  padding:0.5rem 1rem;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow:4px 4px 0 var(--border);
+  font-family:'Kalam',cursive;font-size:0.9rem;color:var(--fg);
+  display:flex;align-items:center;gap:0.4rem;
+}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ===================== WHATSAPP FLOAT ===================== */
+.wa-float{
+  position:fixed;bottom:5rem;right:1.5rem;z-index:900;
+  background:#25d366;border:3px solid var(--border);
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:4px 4px 0 var(--border);
+  font-size:1.5rem;text-decoration:none;
+  transition:transform 0.15s;
+}
+.wa-float:hover{transform:rotate(-10deg) scale(1.1)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="main-header">
+  <div class="logo">
+    <span>⬡</span> COVER <span style="color:var(--fg)">GC&M</span>
+  </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-right">
+    <!-- Luminous toggle -->
+    <div class="theme-card" id="themeToggle" onclick="toggleTheme()">
+      <div class="light-layer">
+        <div class="slit"></div>
+        <div class="lumen">
+          <div class="min"></div>
+          <div class="mid"></div>
+          <div class="hi"></div>
+        </div>
+      </div>
+      <div class="toggle-inner"></div>
+      <div class="toggle-handle"></div>
+      <span class="theme-icon moon">🌙</span>
+      <span class="theme-icon sun">☀️</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Skyline animation -->
+  <div class="skyline-container" id="skyline">
+    <!-- Burj Khalifa -->
+    <div class="building" id="b1" style="z-index:7">
+      <svg width="60" height="320" viewBox="0 0 60 320">
+        <polygon points="30,0 33,60 37,120 40,180 44,220 48,260 56,300 4,300 12,260 16,220 20,180 23,120 27,60" fill="#6b7280" stroke="var(--border)" stroke-width="1.5"/>
+        <rect x="28" y="290" width="4" height="30" fill="#4b5563"/>
+        <line x1="30" y1="5" x2="30" y2="290" stroke="#9ca3af" stroke-width="0.5" stroke-dasharray="4,8"/>
+      </svg>
+    </div>
+    <!-- Eiffel Tower -->
+    <div class="building" id="b2" style="z-index:6;margin-left:-10px">
+      <svg width="100" height="260" viewBox="0 0 100 260">
+        <polygon points="50,0 55,40 60,80 70,130 80,180 85,220 95,260 5,260 15,220 20,180 30,130 40,80 45,40" fill="#9ca3af" stroke="var(--border)" stroke-width="1.5"/>
+        <rect x="70" y="180" width="25" height="4" fill="#6b7280"/>
+        <rect x="5" y="180" width="25" height="4" fill="#6b7280"/>
+        <rect x="60" y="130" width="20" height="3" fill="#9ca3af"/>
+        <rect x="20" y="130" width="20" height="3" fill="#9ca3af"/>
+      </svg>
+    </div>
+    <!-- Minerva Tower (hexagonal) -->
+    <div class="building" id="b3" style="z-index:5;margin-left:-5px">
+      <svg width="80" height="280" viewBox="0 0 80 280">
+        <polygon points="40,0 50,40 55,100 57,160 58,220 72,280 8,280 22,220 23,160 25,100 30,40" fill="#7c8fa3" stroke="var(--border)" stroke-width="1.5"/>
+        <rect x="20" y="200" width="40" height="4" fill="#6b7280"/>
+        <rect x="23" y="160" width="34" height="3" fill="#9ca3af"/>
+      </svg>
+    </div>
+    <!-- Taipei 101 -->
+    <div class="building" id="b4" style="z-index:8;margin-left:-15px">
+      <svg width="90" height="300" viewBox="0 0 90 300">
+        <rect x="30" y="0" width="30" height="8" fill="#4b9e6b" stroke="var(--border)" stroke-width="1"/>
+        <rect x="25" y="8" width="40" height="25" fill="#4b9e6b" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="20" y="33" width="50" height="25" fill="#5aad78" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="15" y="58" width="60" height="25" fill="#4b9e6b" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="10" y="83" width="70" height="25" fill="#5aad78" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="5" y="108" width="80" height="25" fill="#4b9e6b" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="0" y="133" width="90" height="25" fill="#5aad78" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="5" y="158" width="80" height="30" fill="#4b9e6b" rx="2" stroke="var(--border)" stroke-width="1"/>
+        <rect x="10" y="188" width="70" height="112" fill="#3d8a5c" stroke="var(--border)" stroke-width="1"/>
+        <rect x="35" y="0" width="20" height="8" fill="#2d6b45"/>
+      </svg>
+    </div>
+    <!-- PETRONAS Tower 2 -->
+    <div class="building" id="b5" style="z-index:6;margin-left:5px">
+      <svg width="75" height="290" viewBox="0 0 75 290">
+        <rect x="20" y="60" width="35" height="230" fill="#c0a882" stroke="var(--border)" stroke-width="1.5"/>
+        <polygon points="37,0 38,40 42,40 43,0" fill="#b8976a" stroke="var(--border)" stroke-width="1"/>
+        <polygon points="37,60 20,60 14,80 14,140 61,140 61,80 55,60" fill="#d4bfa0" stroke="var(--border)" stroke-width="1"/>
+        <rect x="30" y="140" width="15" height="20" fill="#c0a882"/>
+        <rect x="22" y="200" width="31" height="4" fill="#b8976a"/>
+      </svg>
+    </div>
+    <!-- Trump Tower Chicago -->
+    <div class="building" id="b6" style="z-index:5;margin-left:-8px">
+      <svg width="85" height="275" viewBox="0 0 85 275">
+        <rect x="10" y="120" width="65" height="155" fill="#8b9dc3" stroke="var(--border)" stroke-width="1.5"/>
+        <rect x="18" y="70" width="49" height="50" fill="#9dadd6" stroke="var(--border)" stroke-width="1"/>
+        <rect x="26" y="30" width="33" height="40" fill="#8b9dc3" stroke="var(--border)" stroke-width="1"/>
+        <rect x="35" y="0" width="15" height="30" fill="#6b7fb5" stroke="var(--border)" stroke-width="1"/>
+        <line x1="42" y1="0" x2="42" y2="30" stroke="#fff" stroke-width="0.5"/>
+        <!-- windows -->
+        <rect x="15" y="130" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="145" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="160" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="175" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="190" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="205" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="220" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="235" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+        <rect x="15" y="250" width="55" height="2" fill="#6b7fb5" opacity="0.5"/>
+      </svg>
+    </div>
+    <!-- Jin Mao Tower -->
+    <div class="building" id="b7" style="z-index:4;margin-left:-5px">
+      <svg width="95" height="285" viewBox="0 0 95 285">
+        <rect x="30" y="0" width="35" height="8" fill="#e8c97a" stroke="var(--border)" stroke-width="1"/>
+        <rect x="26" y="8" width="43" height="12" fill="#e8c97a" stroke="var(--border)" stroke-width="1"/>
+        <rect x="22" y="20" width="51" height="14" fill="#d4b565" stroke="var(--border)" stroke-width="1"/>
+        <rect x="18" y="34" width="59" height="16" fill="#e8c97a" stroke="var(--border)" stroke-width="1"/>
+        <rect x="14" y="50" width="67" height="18" fill="#d4b565" stroke="var(--border)" stroke-width="1"/>
+        <rect x="10" y="68" width="75" height="20" fill="#e8c97a" stroke="var(--border)" stroke-width="1"/>
+        <rect x="6" y="88" width="83" height="22" fill="#d4b565" stroke="var(--border)" stroke-width="1"/>
+        <rect x="2" y="110" width="91" height="25" fill="#e8c97a" stroke="var(--border)" stroke-width="1"/>
+        <rect x="0" y="135" width="95" height="150" fill="#c9a84c" stroke="var(--border)" stroke-width="1"/>
+        <rect x="32" y="0" width="4" height="8" fill="#c9a84c"/>
+        <rect x="59" y="0" width="4" height="8" fill="#c9a84c"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-bg-overlay"></div>
+
+  <div class="hero-content" style="z-index:15">
+    <div class="hero-tagline">🏗️ Abu Dhabi's Trusted Contractors Since 2016</div>
+    <h1 class="hero-headline" id="heroHeadline">
+      <span class="word"><span class="char">B</span><span class="char">U</span><span class="char">I</span><span class="char">L</span><span class="char">D</span><span class="char">I</span><span class="char">N</span><span class="char">G</span></span>
+      <span class="word"><span class="char accent-word">E</span><span class="char accent-word">X</span><span class="char accent-word">C</span><span class="char accent-word">E</span><span class="char accent-word">L</span><span class="char accent-word">L</span><span class="char accent-word">E</span><span class="char accent-word">N</span><span class="char accent-word">C</span><span class="char accent-word">E</span></span><br/>
+      <span class="word"><span class="char">F</span><span class="char">R</span><span class="char">O</span><span class="char">M</span></span>
+      <span class="word"><span class="char">T</span><span class="char">H</span><span class="char">E</span></span>
+      <span class="word"><span class="char">G</span><span class="char">R</span><span class="char">O</span><span class="char">U</span><span class="char">N</span><span class="char">D</span></span>
+      <span class="word"><span class="char accent-word">U</span><span class="char accent-word">P</span></span>
+    </h1>
+    <p class="hero-sub">Specialized contracting & maintenance services for industrial and residential units across the UAE capital.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-17 btn-beam">
+        <div class="beam-border"></div><div class="beam-inner"></div>
+        <span class="text-container"><span class="text">Get a Quote</span></span>
+      </a>
+      <a href="#services" class="btn-17" style="background:transparent;border:3px solid var(--border);color:var(--fg);border-radius:99rem;padding:0.75rem 2.8rem">
+        <span class="text-container"><span class="text">Our Services</span></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    scroll down
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="about-img-wrap">
+    <div class="about-tape"></div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard" id="aboutCard">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Construction site Abu Dhabi"/>
+        <div class="tcard-caption" id="aboutCaption">Cover GC&M — Abu Dhabi</div>
+        <div class="tcard-overlay"><p>🏗️ Mussafah, Abu Dhabi</p></div>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><span class="stat-num">500+</span><span class="stat-lbl">Projects Completed</span></div>
+      <div class="stat-box"><span class="stat-num">8+</span><span class="stat-lbl">Years Experience</span></div>
+      <div class="stat-box"><span class="stat-num">100%</span><span class="stat-lbl">Client Satisfaction</span></div>
+      <div class="stat-box"><span class="stat-num">24/7</span><span class="stat-lbl">Emergency Support</span></div>
+    </div>
+  </div>
+  <div>
+    <span class="section-label">About Us</span>
+    <h2 class="section-title">Your Reliable Partner in Contracting & Maintenance</h2>
+    <hr class="dashed-divider"/>
+    <p class="section-desc" style="margin-bottom:1rem">
+      COVER General Contracting and Maintenance SP LLC is a premier contracting firm based in Mussafah, Abu Dhabi. We specialize in building maintenance, roof repairs, waterproofing, and full contracting services for both industrial and residential units.
+    </p>
+    <p class="section-desc" style="margin-bottom:2rem">
+      Operating across the UAE capital, our skilled team delivers quality workmanship, using premium materials and proven techniques. From a leaking roof to a complete building renovation — we cover it all.
+    </p>
+    <a href="tel:+97102555626" class="btn-17 btn-beam" style="display:inline-block;text-decoration:none">
+      <div class="beam-border"></div><div class="beam-inner"></div>
+      <span class="text-container"><span class="text">📞 Call Now: 02-5556266</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-desc">Comprehensive contracting and maintenance solutions tailored to every need.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card featured reveal">
+      <div class="service-tack"></div>
+      <span class="service-icon">🏠</span>
+      <div class="service-title">Roof Repairs & Waterproofing</div>
+      <p class="service-desc">Expert roof repair services and waterproofing solutions for all building types. We stop leaks permanently using industry-leading materials and techniques.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-tack" style="background:var(--secondary)"></div>
+      <span class="service-icon">🏭</span>
+      <div class="service-title">Industrial Contracting</div>
+      <p class="service-desc">Specialized contracting services for industrial units across Abu Dhabi. Full project management from planning to completion.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-tack" style="background:#4b9e6b"></div>
+      <span class="service-icon">🏢</span>
+      <div class="service-title">Residential Maintenance</div>
+      <p class="service-desc">Comprehensive building maintenance for villas, apartments, and residential complexes. Regular and emergency maintenance contracts available.</p>
+    </div>
+    <div class="service-card featured reveal">
+      <div class="service-tack"></div>
+      <span class="service-icon">🔧</span>
+      <div class="service-title">General Building Maintenance</div>
+      <p class="service-desc">All-inclusive building maintenance services covering plumbing, electrical, civil works, painting, and structural repairs.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-tack" style="background:var(--secondary)"></div>
+      <span class="service-icon">🪟</span>
+      <div class="service-title">Aluminium Fabrication</div>
+      <p class="service-desc">Custom aluminium fabrication for windows, doors, facades, and structural elements. Precision cutting and finishing to specification.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-tack" style="background:#8b9dc3"></div>
+      <span class="service-icon">⚙️</span>
+      <div class="service-title">Steel Fabrication & Cutting</div>
+      <p class="service-desc">Laser cutting, steel fabrication, and water jet cutting services. Industrial-grade precision for all your structural steel needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS / TILTED CARD SECTION -->
+<section id="projects" style="padding:6rem 2rem;max-width:1100px;margin:0 auto">
+  <div class="section-header reveal">
+    <span class="section-label">Our Work</span>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-desc">Real projects, real results. Hover over the cards to explore our work up close.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Waterproofing project"/>
+        <div class="tcard-caption">Roof Waterproofing — Mussafah</div>
+        <div class="tcard-overlay"><p>💧 Waterproofing</p></div>
+      </div>
+    </div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="pla.jpg" alt="Industrial facility"/>
+        <div class="tcard-caption">Industrial Unit — Abu Dhabi Capital</div>
+        <div class="tcard-overlay"><p>🏭 Industrial Works</p></div>
+      </div>
+    </div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="unnamed (1).jpg" alt="Building maintenance"/>
+        <div class="tcard-caption">Residential Complex — Abu Dhabi</div>
+        <div class="tcard-overlay"><p>🏢 Residential</p></div>
+      </div>
+    </div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="Screenshot 2026-05-14 232014.png" alt="Steel fabrication"/>
+        <div class="tcard-caption">Steel Fabrication — Mussafah M37</div>
+        <div class="tcard-overlay"><p>⚙️ Steel Works</p></div>
+      </div>
+    </div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&q=80" alt="Roof repair"/>
+        <div class="tcard-caption">Roof Repair — Abu Dhabi</div>
+        <div class="tcard-overlay"><p>🏠 Roof Repairs</p></div>
+      </div>
+    </div>
+    <div class="tcard-wrap" data-tilt>
+      <div class="tcard">
+        <img src="Screenshot 2026-05-14 231659.png" alt="Building exterior"/>
+        <div class="tcard-caption">Exterior Renovation — Capital</div>
+        <div class="tcard-overlay"><p>✨ Renovation</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" style="padding:6rem 2rem;max-width:1100px;margin:0 auto">
+  <div class="section-header reveal">
+    <span class="section-label">Why Cover GC&M</span>
+    <h2 class="section-title">Why Choose Us?</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><span class="why-icon">🏆</span><div class="why-title">Proven Track Record</div><p class="why-desc">500+ successfully completed projects across Abu Dhabi and the UAE capital region.</p></div>
+    <div class="why-card reveal"><span class="why-icon">⚡</span><div class="why-title">Fast Response</div><p class="why-desc">24/7 emergency maintenance support. We respond quickly because downtime costs money.</p></div>
+    <div class="why-card reveal"><span class="why-icon">🎯</span><div class="why-title">Precision Work</div><p class="why-desc">Industrial-grade precision in every job. Laser cutting, steel work, and waterproofing done right the first time.</p></div>
+    <div class="why-card reveal"><span class="why-icon">💰</span><div class="why-title">Competitive Pricing</div><p class="why-desc">Fair, transparent pricing with no hidden costs. Annual maintenance contracts available at great value.</p></div>
+    <div class="why-card reveal"><span class="why-icon">👷</span><div class="why-title">Expert Team</div><p class="why-desc">Certified professionals with years of hands-on experience in the UAE construction industry.</p></div>
+    <div class="why-card reveal"><span class="why-icon">📋</span><div class="why-title">Full Compliance</div><p class="why-desc">All work performed in accordance with UAE building codes and safety regulations.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header reveal">
+    <span class="section-label">Client Reviews</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-desc">Real feedback from real clients across Abu Dhabi.</p>
+  </div>
+  <div class="carousel-track-wrap" style="margin-top:2rem">
+    <div class="carousel-track" id="reviewTrack">
+      <!-- Reviews duplicated for infinite loop -->
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Excellent waterproofing work on our warehouse roof. The team was professional, on time, and cleaned up after themselves. No more leaks after 2 years!</p><div class="review-author">Ahmed Al Mansoori</div><div class="review-date">Industrial client, Mussafah</div></div>
+      <div class="review-card"><div class="review-tack" style="background:var(--accent)"></div><div class="review-stars">★★★★★</div><p class="review-text">Cover GC&M handled our villa's full exterior maintenance. Great communication throughout, quality work, and fair pricing. Highly recommended!</p><div class="review-author">Sara Khalifa</div><div class="review-date">Residential, Abu Dhabi</div></div>
+      <div class="review-card"><div class="review-tack" style="background:#4b9e6b"></div><div class="review-stars">★★★★☆</div><p class="review-text">We signed an annual maintenance contract for our commercial building. Response times are excellent and the team is always courteous and skilled.</p><div class="review-author">Mohammed Hassan</div><div class="review-date">Commercial Building Owner</div></div>
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Their steel fabrication and laser cutting services are top notch. Precise, fast delivery. They understood our industrial requirements perfectly.</p><div class="review-author">Khalid Al Rashidi</div><div class="review-date">Factory Manager, Mussafah</div></div>
+      <div class="review-card"><div class="review-tack" style="background:var(--secondary)"></div><div class="review-stars">★★★★★</div><p class="review-text">Called them for an emergency roof leak during rain season. They arrived within hours and fixed it properly. Lifesavers! Very impressed with the service.</p><div class="review-author">Fatima Al Zaabi</div><div class="review-date">Villa Owner, Abu Dhabi</div></div>
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Professional team that does quality aluminium fabrication. The windows and doors they installed look perfect and are very well sealed. Worth every dirham.</p><div class="review-author">Omar Abdullah</div><div class="review-date">Apartment Complex, Capital</div></div>
+      <div class="review-card"><div class="review-tack" style="background:#e8c97a"></div><div class="review-stars">★★★★☆</div><p class="review-text">Used them for our industrial unit's full refurbishment. On schedule, on budget, and the quality exceeded our expectations. Will use again for sure.</p><div class="review-author">Bilal Khan</div><div class="review-date">Industrial Client</div></div>
+      <!-- Duplicate for loop -->
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Excellent waterproofing work on our warehouse roof. The team was professional, on time, and cleaned up after themselves. No more leaks after 2 years!</p><div class="review-author">Ahmed Al Mansoori</div><div class="review-date">Industrial client, Mussafah</div></div>
+      <div class="review-card"><div class="review-tack" style="background:var(--accent)"></div><div class="review-stars">★★★★★</div><p class="review-text">Cover GC&M handled our villa's full exterior maintenance. Great communication throughout, quality work, and fair pricing. Highly recommended!</p><div class="review-author">Sara Khalifa</div><div class="review-date">Residential, Abu Dhabi</div></div>
+      <div class="review-card"><div class="review-tack" style="background:#4b9e6b"></div><div class="review-stars">★★★★☆</div><p class="review-text">We signed an annual maintenance contract for our commercial building. Response times are excellent and the team is always courteous and skilled.</p><div class="review-author">Mohammed Hassan</div><div class="review-date">Commercial Building Owner</div></div>
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Their steel fabrication and laser cutting services are top notch. Precise, fast delivery. They understood our industrial requirements perfectly.</p><div class="review-author">Khalid Al Rashidi</div><div class="review-date">Factory Manager, Mussafah</div></div>
+      <div class="review-card"><div class="review-tack" style="background:var(--secondary)"></div><div class="review-stars">★★★★★</div><p class="review-text">Called them for an emergency roof leak during rain season. They arrived within hours and fixed it properly. Lifesavers! Very impressed with the service.</p><div class="review-author">Fatima Al Zaabi</div><div class="review-date">Villa Owner, Abu Dhabi</div></div>
+      <div class="review-card"><div class="review-tack"></div><div class="review-stars">★★★★★</div><p class="review-text">Professional team that does quality aluminium fabrication. The windows and doors they installed look perfect and are very well sealed. Worth every dirham.</p><div class="review-author">Omar Abdullah</div><div class="review-date">Apartment Complex, Capital</div></div>
+      <div class="review-card"><div class="review-tack" style="background:#e8c97a"></div><div class="review-stars">★★★★☆</div><p class="review-text">Used them for our industrial unit's full refurbishment. On schedule, on budget, and the quality exceeded our expectations. Will use again for sure.</p><div class="review-author">Bilal Khan</div><div class="review-date">Industrial Client</div></div>
+    </div>
+  </div>
+</section>
+
+
+    
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div>
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-desc" style="margin-bottom:2rem">Ready to start your project? We're here to help.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-item-icon">📍</span>
+        <div class="contact-item-text">
+          <strong>Address</strong>
+          Cover General Contracting - 55 Al Jazzeem 1 St - Musaffah - M37 - Abu Dhabi, UAE
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">📞</span>
+        <div class="contact-item-text">
+          <strong>Phone</strong>
+          <a href="tel:+97102555626" style="color:var(--secondary);text-decoration:none">+02 555 6266</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">💬</span>
+        <div class="contact-item-text">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/025556266" target="_blank" style="color:var(--secondary);text-decoration:none">+02 555 6266</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">🕐</span>
+        <div class="contact-item-text">
+          <strong>Working Hours</strong>
+          Monday – Friday: 8:00 AM – 6:00 PM<br/>
+          Sunday: Closed  <br>
+          Emergency: 24/7
+        </div>
+      </div>
+      <a href="https://maps.app.goo.gl/2cXSfsvAqFztZE1W9" target="_blank" class="btn-17 btn-beam" style="display:inline-block;text-decoration:none;margin-top:0.5rem">
+        <div class="beam-border"></div><div class="beam-inner"></div>
+        <span class="text-container"><span class="text">📍 View on Maps</span></span>
+      </a>
+    </div>
+  </div>
+  <div>
+    <span class="section-label">Send a Message</span>
+    <h2 class="section-title" style="font-size:1.8rem">Request a Quote</h2>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <input type="text" class="form-input" placeholder="Your Name" required/>
+      <input type="tel" class="form-input" placeholder="Phone Number" required/>
+      <input type="email" class="form-input" placeholder="Email Address"/>
+      <select class="form-input" style="cursor:pointer">
+        <option value="">Select Service</option>
+        <option>Roof Repairs & Waterproofing</option>
+        <option>Industrial Contracting</option>
+        <option>Residential Maintenance</option>
+        <option>Steel Fabrication</option>
+        <option>Aluminium Fabrication</option>
+        <option>General Maintenance</option>
+      </select>
+      <textarea class="form-input" placeholder="Describe your project or issue..."></textarea>
+      <button type="submit" class="btn-17 btn-beam" style="border:none;cursor:pointer;width:fit-content">
+        <div class="beam-border"></div><div class="beam-inner"></div>
+        <span class="text-container"><span class="text">✉️ Send Request</span></span>
+      </button>
+    </form>
+    <div id="formSuccess" style="display:none;margin-top:1rem;padding:1rem;background:var(--card-bg);border:3px solid #4b9e6b;border-radius:15px;box-shadow:4px 4px 0 #4b9e6b;font-family:'Kalam',cursive;font-size:1.1rem;color:#4b9e6b">
+      ✅ Thank you! We'll contact you within 24 hours.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">COVER <span>GC&M</span></div>
+  <p style="font-size:0.9rem;opacity:0.6;margin-bottom:1rem">General Contracting & Maintenance SP LLC — Mussafah, Abu Dhabi</p>
+  Web Made By Nash, nashmn35@gmail.com
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+97102555626">02-5556266</a>
+    <a href="https://wa.me/025556266" target="_blank">WhatsApp</a>
+  </div>
+  <hr class="dashed-divider" style="max-width:400px;margin:1.5rem auto"/>
+  <div class="footer-copy">© 2026 COVER General Contracting & Maintenance SP LLC. All rights reserved.  Abu Dhabi, UAE.</div>
+</footer>
+
+<!-- LIVE CLOCK -->
+<div class="live-badge">
+  <span class="live-dot"></span>
+  <span id="liveClock">--:-- --</span>
+  <span style="opacity:0.5;font-size:0.75rem">GST</span>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/025556266" target="_blank" class="wa-float" title="Chat on WhatsApp">💬</a>
+
+<script>
+/* ===================== THEME TOGGLE ===================== */
+const html = document.documentElement;
+const toggle = document.getElementById('themeToggle');
+let isDark = true;
+
+function toggleTheme(){
+  isDark = !isDark;
+  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  toggle.classList.toggle('active', isDark);
+}
+// Start dark
+toggle.classList.add('active');
+
+/* ===================== HEADER HIDE/SHOW ===================== */
+const header = document.getElementById('main-header');
+let lastScroll = 0;
+let heroHeight = window.innerHeight;
+let isAtTop = true;
+
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  if(y < 80){
+    header.classList.remove('hidden','peek');
+    isAtTop = true;
+    return;
+  }
+  if(isAtTop){ isAtTop = false; }
+  if(y > lastScroll && y > 80){
+    header.classList.add('hidden');
+    header.classList.remove('peek');
+  } else if(y < lastScroll){
+    header.classList.remove('hidden');
+    header.classList.add('peek');
+  }
+  lastScroll = y;
+});
+
+/* ===================== HERO HEADLINE ANIMATION ===================== */
+(function animateChars(){
+  const chars = document.querySelectorAll('.hero-headline .char');
+  chars.forEach((c,i)=>{
+    c.style.animationDelay = (2.5 + i * 0.05) + 's'; // start after buildings
+  });
+})();
+
+/* ===================== BUILDING CRUMBLE SEQUENCE ===================== */
+const buildingIds = ['b1','b2','b3','b4','b5','b6','b7'];
+const delays =      [300, 2400, 4400, 6200, 8100, 10000, 11900];
+const durations =   [1800,1800,1800, 1700, 1800, 1800,  1800];
+
+buildingIds.forEach((id,i)=>{
+  setTimeout(()=>{
+    const el = document.getElementById(id);
+    if(el){
+      el.classList.add('animate');
+    }
+  }, delays[i]);
+});
+
+/* ===================== SCROLL REVEAL ===================== */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+},{threshold:0.12});
+reveals.forEach(r=>observer.observe(r));
+
+/* ===================== TILTED CARD 3D EFFECT ===================== */
+document.querySelectorAll('.tcard-wrap[data-tilt]').forEach(wrap=>{
+  const card = wrap.querySelector('.tcard');
+  const caption = wrap.querySelector('.tcard-caption');
+  if(!card) return;
+  wrap.addEventListener('mousemove',e=>{
+    const r = wrap.getBoundingClientRect();
+    const ox = e.clientX - r.left - r.width/2;
+    const oy = e.clientY - r.top - r.height/2;
+    const rx = -(oy / (r.height/2)) * 12;
+    const ry = (ox / (r.width/2)) * 12;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+    if(caption){
+      caption.style.left = (e.clientX - r.left) + 'px';
+      caption.style.top = (e.clientY - r.top - 35) + 'px';
+      caption.style.opacity = '1';
+    }
+  });
+  wrap.addEventListener('mouseleave',()=>{
+    card.style.transform = '';
+    if(caption) caption.style.opacity = '0';
+  });
+});
+
+/* ===================== FORM SUBMIT ===================== */
+function handleForm(e){
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display='block';
+  e.target.reset();
+  setTimeout(()=>{ document.getElementById('formSuccess').style.display='none'; },5000);
+}
+
+/* ===================== LIVE CLOCK ===================== */
+function updateClock(){
+  const now = new Date();
+  // UAE is UTC+4
+  const uae = new Date(now.toLocaleString('en-US',{timeZone:'Asia/Dubai'}));
+  let h = uae.getHours(), m = uae.getMinutes(), s = uae.getSeconds();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  document.getElementById('liveClock').textContent =
+    `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} ${ampm}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
